@@ -1,0 +1,70 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <title>Booka-Booku</title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <style type="text/css" media="screen">
+    #input_search{
+      height:30px;
+      width:100%;
+      font-size:16px;
+    }
+    .input_submit{
+      height:30px;
+      float:left;
+      margin-left:10px;
+    }
+    .list-search{
+      width:65%;
+      float:left;
+      background-color: #bebebe;
+    }
+
+    #suggestion-list{
+      position: absolute; background-color:#eef5fd; width:64%; border-right:1px solid #d7e5f3;
+      border-bottom: 1px solid #d7e5f3;
+      border-left: 1px solid #d7e5f3;
+    }
+    
+    .suggest-list:hover{
+     background-color: #d7e5f3; 
+    }
+
+  </style>
+</head>
+<body style="background-color:">
+<center>
+  <h1>Booka-Booku!</h1>
+
+  <form action="" method="post" name="Form1">{% csrf_token %}
+  <div id="name" class="list-search">
+  <input type="text" name="searchbook" id="input_search" onKeyUp="suggestion()" autocomplete="off" value="{{ query }}"/> 
+  <div id="suggestion-list">
+    
+  </div>
+  </div>
+  <input type="submit" value="Search Buku" class="input_submit">
+  </form>
+  <br>
+  <br>
+  {% if numberOfBook %}
+  <span style="font-size:10px;">ada {{ numberOfBook }} buku dengan kata kunci ini: <b>{{ query }}</b></span>
+  {% endif %}
+  {{ empty }}
+</center>
+  {% for book in books %}
+  <p><b>{{ book.judul }}</b> {{ book.seri}} ({{ book.tipe }})</p>
+  {% endfor %}
+  <br>
+  <script type="text/javascript" charset="utf-8">
+  function suggestion(){
+    txt = document.getElementById("input_search").value;
+    $.post("/search/", { searchbook: txt, csrfmiddlewaretoken: '{{ csrf_token }}'}, function(data) {
+          $("#suggestion-list").html(data);
+     });
+  }
+  </script>
+
+</body>
+</html>

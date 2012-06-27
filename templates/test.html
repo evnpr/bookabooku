@@ -1,0 +1,10 @@
+{% for book in books %}
+<div class="suggest-list" style="line-height:20px; padding-top:5px; padding-bottom:5px; cursor:pointer;" onClick="putSearch(this.title)" title="{{ book.judul }}"> {{ book.judul }} </div>
+<script type="text/javascript" charset="utf-8">
+  function putSearch(thisValue){
+   document.getElementById("input_search").value = thisValue
+   document.Form1.searchbook.focus();
+   suggestion();
+  }
+</script>
+{% endfor %}
