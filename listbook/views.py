@@ -30,3 +30,18 @@ def search(request):
     data['books'] = books
     return render_to_response("test.html", data)
 
+def about(request):
+  data = {}
+  data.update(csrf(request))
+  if request.method == "POST":
+    inp_book = request.POST.get('searchbook')
+    if not inp_book:
+      data['empty'] = 'anda belum memasukkan query'
+      return render_to_response('aboutus.html', data)
+    books = getListBook(inp_book)
+    data['query'] = inp_book
+    data['numberOfBook'] = books.count()
+    if not books:
+      data['empty'] = 'maaf tidak tersedia'
+    data['books'] = books
+  return render_to_response('aboutus.html', data)

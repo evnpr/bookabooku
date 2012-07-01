@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'listbook.views.home', name='home'),
     url(r'^search/$', 'listbook.views.search'),
+    url(r'^about/$', 'listbook.views.about', name='about'),
     # url(r'^bookabooku/', include('bookabooku.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
