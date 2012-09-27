@@ -24,7 +24,7 @@ def home(request):
 def search(request):
   test = request.POST.get('searchbook')
   if test:
-    books = Book.objects.filter(judul__contains=test).values('judul').distinct()[:10]
+    books = Book.objects.filter(judul__contains=test).values('judul').distinct()[:8]
     data = {}
     data.update(csrf(request))
     data['books'] = books

@@ -4,8 +4,8 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 mydatabase= 'bookabooku.db'
 mytemplates= 'templates/'
-mydatabase = '/home/ubuntu/www/bookabooku/bookabooku.db'
-mytemplates = 'home/ubuntu/www/bookabooku/templates/'
+mydatabased = '/home/ubuntu/www/bookabooku/bookabooku.db'
+mytemplatesd = 'home/ubuntu/www/bookabooku/templates/'
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
